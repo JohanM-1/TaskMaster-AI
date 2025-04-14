@@ -1,0 +1,58 @@
+<section class="py-20 bg-palette-light dark:bg-palette-dark">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-palette-navy dark:text-palette-light text-4xl font-extrabold mb-4">Frequently Asked Questions</h2>
+            <p class="text-palette-navy dark:text-palette-sand">Find answers to common questions about our services</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="bg-white dark:bg-palette-navy rounded-lg shadow-md overflow-hidden">
+                <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-palette-light dark:hover:bg-opacity-10 transition-colors" onclick="toggleFaq(this)">
+                    <span class="text-palette-dark dark:text-palette-light font-semibold">How do I get started?</span>
+                    <svg class="w-5 h-5 text-palette-rose transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="hidden px-6 py-4 border-t border-palette-light dark:border-palette-navy">
+                    <p class="text-palette-navy dark:text-palette-sand">Getting started is easy! Simply sign up for a free account and follow our quick setup guide. We'll help you every step of the way.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="bg-white dark:bg-palette-navy rounded-lg shadow-md overflow-hidden">
+                <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-palette-light dark:hover:bg-opacity-10 transition-colors" onclick="toggleFaq(this)">
+                    <span class="text-palette-dark dark:text-palette-light font-semibold">What payment methods do you accept?</span>
+                    <svg class="w-5 h-5 text-palette-rose transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="hidden px-6 py-4 border-t border-palette-light dark:border-palette-navy">
+                    <p class="text-palette-navy dark:text-palette-sand">We accept all major credit cards, PayPal, and bank transfers. All payments are processed securely through our payment partners.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="bg-white dark:bg-palette-navy rounded-lg shadow-md overflow-hidden">
+                <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-palette-light dark:hover:bg-opacity-10 transition-colors" onclick="toggleFaq(this)">
+                    <span class="text-palette-dark dark:text-palette-light font-semibold">Can I upgrade or downgrade my plan?</span>
+                    <svg class="w-5 h-5 text-palette-rose transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="hidden px-6 py-4 border-t border-palette-light dark:border-palette-navy">
+                    <p class="text-palette-navy dark:text-palette-sand">Yes, you can change your plan at any time. Changes will be reflected in your next billing cycle, and we'll adjust any remaining balance accordingly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+    </script>
+</section>

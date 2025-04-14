@@ -1,0 +1,28 @@
+<section id="Services" class="rounded-md bg-palette-light dark:bg-gradient-to-b from-palette-navy to-palette-dark py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold text-palette-navy dark:text-palette-light mb-4">Our Purpose</h2>
+      <p class="text-lg text-palette-navy dark:text-palette-sand">
+        Driving innovation through AI-powered development
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Mission Card -->
+      <div class="bg-white dark:bg-palette-navy p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-palette-navy/20 dark:border-palette-rose/20">
+        <h3 class="text-2xl font-bold text-palette-navy dark:text-palette-rose mb-4">Mission</h3>
+        <p class="text-palette-navy dark:text-palette-light leading-relaxed">
+          {{ mission|default:"To streamline the creation and management of software development projects through artificial intelligence, optimizing processes, automating tasks, and enhancing team productivity worldwide." }}
+        </p>
+      </div>
+
+      <!-- Vision Card -->
+      <div class="bg-white dark:bg-palette-navy p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-palette-navy/20 dark:border-palette-rose/20">
+        <h3 class="text-2xl font-bold text-palette-navy dark:text-palette-rose mb-4">Vision</h3>
+        <p class="text-palette-navy dark:text-palette-light leading-relaxed">
+          {{ vision|default:"To be the leading platform for AI-powered software development, revolutionizing how ideas turn into innovative products with speed, efficiency, and quality." }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

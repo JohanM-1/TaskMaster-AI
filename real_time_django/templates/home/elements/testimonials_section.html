@@ -1,0 +1,18 @@
+<section class="mb-5" id="testimonials">
+  {# 
+    Parámetros esperados:
+    - title: El título de la sección (string)
+    - testimonials: Lista de testimonios (list)
+  #}
+  <div class="testimonials-section p-4">
+    <h2 class="text-3xl font-bold mb-3">{{ title|default:"Testimonios" }}</h2>
+    <div class="testimonials">
+      {% for testimonial in testimonials %}
+        <blockquote class="mb-4">
+          <p>"{{ testimonial.text }}"</p>
+          <footer>- {{ testimonial.author }}</footer>
+        </blockquote>
+      {% endfor %}
+    </div>
+  </div>
+</section>

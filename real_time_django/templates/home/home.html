@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}TaskMaster AI - Organiza tus Projectos con Inteligencia Artificial{% endblock %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="max-w-7xl mx-auto">
+    {% include 'home/elements/hero_section.html' with subtitle="To streamline the creation and management of software development projects through artificial intelligence, optimizing processes, automating tasks, and enhancing team productivity worldwide."%}
+    {% include 'home/elements/features_section.html' %}
+    {% include 'home/elements/how_it_works_section.html' %}
+    {% include 'home/elements/signup_section.html' %}
+    {% include 'home/elements/faq_section.html' %}
+    {% include 'home/elements/pricing_section.html' %}
+  </section>
+</main>
+
+{% include 'home/elements/footer_section.html' %}
+{% endblock %}
