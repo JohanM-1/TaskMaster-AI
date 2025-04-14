@@ -59,7 +59,7 @@ services:
     depends_on:
       - redis
       - postgres
-    ports: null
+    ports: []
     command: /start-celeryworker
 
   celerybeat:
@@ -69,7 +69,7 @@ services:
     depends_on:
       - redis
       - postgres
-    ports: null
+    ports: []
     command: /start-celerybeat
 
   flower:
