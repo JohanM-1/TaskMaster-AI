@@ -18,7 +18,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "0.0.0.0",
     "127.0.0.1",
-    env("HOST_IP", default="taskmaster-ai.techcreator.org"),
+    env("HOST_IP"),
+    "taskmaster-ai.techcreator.org",
 ]  # noqa: S104
 
 # CACHES
