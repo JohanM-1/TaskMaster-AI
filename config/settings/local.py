@@ -14,7 +14,7 @@ SECRET_KEY = env(
     default="NQT2w9oFMF7RRmGccHideVjCeK55TQvZeubdx46Rl8VujjMBeiCwRWeB7b2QsoHT",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]  # noqa: S104
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", env("HOST_IP")]  # noqa: S104
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -30,7 +30,8 @@ CACHES = {
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend",
+    "DJANGO_EMAIL_BACKEND",
+    default="django.core.mail.backends.console.EmailBackend",
 )
 
 # django-debug-toolbar
@@ -55,7 +56,7 @@ DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TEMPLATE_CONTEXT": True,
 }
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
-INTERNAL_IPS = ["127.0.0.1", "10.0.2.2",env("HOST_IP"),]
+INTERNAL_IPS = ["127.0.0.1", "10.0.2.2", env("HOST_IP")]
 if env("USE_DOCKER") == "yes":
     import socket
 
@@ -65,7 +66,7 @@ if env("USE_DOCKER") == "yes":
     # ------------------------------------------------------------------------------
     # This is a custom setting for RunServerPlus to fix reloader issue in Windows docker environment
     # Werkzeug reloader type [auto, watchdog, or stat]
-    RUNSERVERPLUS_POLLER_RELOADER_TYPE = 'stat'
+    RUNSERVERPLUS_POLLER_RELOADER_TYPE = "stat"
     # If you have CPU and IO load issues, you can increase this poller interval e.g) 5
     RUNSERVERPLUS_POLLER_RELOADER_INTERVAL = 1
 
