@@ -1,13 +1,27 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Forbidden (403){% endblock title %}
+{% block title %}{% trans "CSRF Verification Failed" %}{% endblock %}
+
 {% block content %}
-  <h1>Forbidden (403)</h1>
-  <p>
-    {% if exception %}
-      {{ exception }}
-    {% else %}
-      You're not allowed to access this page.
-    {% endif %}
-  </p>
+<div class="min-h-screen flex items-center justify-center p-8">
+  <div class="max-w-md w-full text-center space-y-6 bg-palette-light p-8 rounded-lg shadow-md">
+    <div class="text-9xl font-light text-palette-navy">403</div>
+    <h1 class="text-3xl font-light text-palette-navy">{% trans "CSRF Verification Failed" %}</h1>
+    <div class="bg-red-50 border border-red-200 text-red-600 rounded-lg p-4 text-sm mb-4">
+      <p>{% trans "Your request could not be processed because the CSRF verification failed. This might happen if:" %}</p>
+      <ul class="list-disc text-left pl-6 mt-2 space-y-1">
+        <li>{% trans "The form was opened for too long before submitting" %}</li>
+        <li>{% trans "You're accessing the site through an invalid proxy" %}</li>
+        <li>{% trans "Your browser's cookies are disabled" %}</li>
+      </ul>
+    </div>
+    <div class="pt-4">
+      <p class="text-palette-dark mb-4">{% trans "Please try refreshing the page or going back and submitting the form again." %}</p>
+      <a href="javascript:history.back()" class="inline-block py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-palette-navy hover:bg-opacity-90 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-palette-navy">
+        {% trans "Go Back" %}
+      </a>
+    </div>
+  </div>
+</div>
 {% endblock content %}

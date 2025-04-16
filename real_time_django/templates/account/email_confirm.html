@@ -1,0 +1,36 @@
+{% extends "allauth/layouts/entrance.html" %}
+{% load i18n %}
+{% load account %}
+
+{% block head_title %}{% trans "Confirm Email Address" %}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen p-8">
+    <div class="max-w-md mx-auto p-8 rounded-lg shadow-md bg-palette-light">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-light text-palette-navy">{% trans "Confirm Email Address" %}</h1>
+        </div>
+
+        {% if confirmation %}
+            {% user_display confirmation.email_address.user as user_display %}
+            <div class="text-center space-y-4">
+                <p class="text-palette-dark">
+                    {% blocktrans with confirmation.email_address.email as email %}Please confirm that <span class="font-medium">{{ email }}</span> is an email address for user {{ user_display }}.{% endblocktrans %}
+                </p>
+
+                <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                    {% csrf_token %}
+                    <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-palette-navy hover:bg-opacity-90 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-palette-navy">
+                        {% trans 'Confirm' %}
+                    </button>
+                </form>
+            </div>
+        {% else %}
+            {% url 'account_email' as email_url %}
+            <div class="bg-red-50 border border-red-200 text-red-600 rounded-lg p-4 text-sm mb-4">
+                {% blocktrans %}This email confirmation link has expired or is invalid. Please <a href="{{ email_url }}" class="underline hover:text-red-700">request a new email confirmation</a>.{% endblocktrans %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
