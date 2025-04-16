@@ -3,53 +3,64 @@
 {% block title %}{{ project.name|default:"New Project" }}{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="rounded-md bg-palette-light dark:bg-palette-dark shadow-xl p-8">
-        <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-palette-sand">
-            {% if project %}Edit Project{% else %}Create New Project{% endif %}
-        </h2>
-        
-        <form method="POST" action="{% if project %}{% url 'edit_project' project.id %}{% else %}{% url 'crear_projecto' %}{% endif %}">
-            {% csrf_token %}
-            <div class="space-y-6">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Project Name</label>
+<div class="min-h-screen p-8 bg-palette-light dark:bg-palette-dark">
+    <div class="max-w-4xl mx-auto">
+        <div class="rounded-lg bg-white dark:bg-palette-navy shadow-xl p-8">
+            <h2 class="text-3xl font-light text-palette-dark dark:text-palette-light mb-6">
+                {% if project %}Edit Project{% else %}Create New Project{% endif %}
+            </h2>
+            
+            <form method="POST" action="{% if project %}{% url 'edit_project' project.id %}{% else %}{% url 'crear_projecto' %}{% endif %}" class="space-y-6">
+                {% csrf_token %}
+                
+                <div class="space-y-2">
+                    <label for="name" class="block text-sm font-medium text-palette-dark dark:text-palette-sand">
+                        Project Name <span class="text-palette-rose">*</span>
+                    </label>
                     <input type="text" 
                            id="name" 
                            name="name" 
                            required 
                            value="{{ project.name|default:'' }}"
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+                           class="w-full px-3 py-2 bg-palette-light dark:bg-palette-dark text-palette-dark dark:text-palette-light border border-palette-sand dark:border-palette-light rounded-md focus:outline-none focus:ring-2 focus:ring-palette-navy dark:focus:ring-palette-rose"
+                           placeholder="Enter project name">
                 </div>
 
-                <div>
-                    <label for="promt" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                <div class="space-y-2">
+                    <label for="promt" class="block text-sm font-medium text-palette-dark dark:text-palette-sand">Description</label>
                     <textarea id="promt" 
                               name="promt" 
                               rows="4"
-                              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">{{ project.promt|default:'' }}</textarea>
+                              class="w-full px-3 py-2 bg-palette-light dark:bg-palette-dark text-palette-dark dark:text-palette-light border border-palette-sand dark:border-palette-light rounded-md focus:outline-none focus:ring-2 focus:ring-palette-navy dark:focus:ring-palette-rose"
+                              placeholder="Add project description">{{ project.promt|default:'' }}</textarea>
+                    <p class="text-xs text-palette-dark dark:text-palette-light opacity-75">Maximum 2555 characters</p>
                 </div>
 
-                <div>
-                    <label for="problem" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Problems/Limitations</label>
+                <div class="space-y-2">
+                    <label for="problem" class="block text-sm font-medium text-palette-dark dark:text-palette-sand">
+                        Problems/Limitations <span class="text-palette-rose">*</span>
+                    </label>
                     <textarea id="problem" 
                               name="problem" 
                               rows="4"
-                              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">{{ project.problem|default:'' }}</textarea>
+                              required
+                              class="w-full px-3 py-2 bg-palette-light dark:bg-palette-dark text-palette-dark dark:text-palette-light border border-palette-sand dark:border-palette-light rounded-md focus:outline-none focus:ring-2 focus:ring-palette-navy dark:focus:ring-palette-rose"
+                              placeholder="Describe current problems or limitations">{{ project.problem|default:'' }}</textarea>
+                    <p class="text-xs text-palette-dark dark:text-palette-light opacity-75">Maximum 2555 characters</p>
                 </div>
 
-                <div class="flex justify-end space-x-4">
+                <div class="flex justify-end space-x-4 pt-6">
                     <a href="{% url 'list_projects' %}" 
-                       class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                       class="px-4 py-2 text-sm font-medium border rounded-md text-palette-navy dark:text-palette-rose border-palette-navy dark:border-palette-rose hover:bg-palette-sand dark:hover:bg-palette-navy hover:bg-opacity-20 transition">
                         Cancel
                     </a>
                     <button type="submit" 
-                            class="px-4 py-2 text-sm font-medium text-white bg-primary-700 rounded-md hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
+                            class="px-4 py-2 text-sm font-medium text-white bg-palette-navy dark:bg-palette-rose rounded-md hover:bg-opacity-90 dark:hover:bg-opacity-80 transition focus:ring-2 focus:ring-offset-2 focus:ring-palette-navy dark:focus:ring-palette-rose">
                         {% if project %}Save Changes{% else %}Create Project{% endif %}
                     </button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

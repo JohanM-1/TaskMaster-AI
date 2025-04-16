@@ -7,102 +7,107 @@
 {% endblock %}
 
 {% block content %}
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="rounded-md bg-palette-light dark:bg-palette-dark shadow-xl p-8">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-4xl font-extrabold tracking-tight leading-none text-gray-900 dark:text-palette-sand">
-                My Projects
-            </h2>
-            <a href="{% url 'crear_projecto' %}" 
-               class="py-2 px-4 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                Create New Project
-            </a>
-        </div>
-
-        {% if projects %}
-            <div class="space-y-6">
-                {% for project in projects %}
-                    <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <a href="{% url 'view_project' project.id %}" class="text-2xl font-bold text-gray-900 dark:text-palette-sand hover:text-primary-700">
-                                {{ project.name|default:"Unnamed Project" }}
-                            </a>
-                            <div class="flex items-center space-x-3">
-                                <span class="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-palette-navy text-gray-800 dark:text-palette-sand">
-                                    Created: {{ project.fecha_creacion|date:"d/m/Y" }}
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Description:</h4>
-                            <p class="text-gray-600 dark:text-gray-300">{{ project.promt|default:"No description provided" }}</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <h4 class="text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Problems/Limitations:</h4>
-                            <p class="text-gray-600 dark:text-gray-300">{{ project.problem|default:"No problems specified" }}</p>
-                        </div>
-
-                        {% if project.requerimientos_set.all %}
-                            <div class="mt-6">
-                                <h4 class="text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">Requirements:</h4>
-                                <ul class="space-y-3">
-                                    {% for req in project.requerimientos_set.all %}
-                                        <li class="pl-4 border-l-2 border-gray-200 dark:border-gray-700">
-                                            <p class="text-sm text-gray-600 dark:text-gray-300">{{ req.description }}</p>
-                                            
-                                            {% if req.userhistory_set.all %}
-                                                <ul class="mt-2 space-y-2">
-                                                    {% for history in req.userhistory_set.all %}
-                                                        <li class="ml-4">
-                                                            <p class="text-sm text-gray-500 dark:text-gray-400">
-                                                                {{ history.history }}
-                                                            </p>
-                                                            
-                                                            {% if history.task_set.all %}
-                                                                <ul class="mt-1 ml-4">
-                                                                    {% for task in history.task_set.all %}
-                                                                        <li class="text-xs text-gray-400 dark:text-gray-500">
-                                                                            • {{ task.title }}
-                                                                        </li>
-                                                                    {% endfor %}
-                                                                </ul>
-                                                            {% endif %}
-                                                        </li>
-                                                    {% endfor %}
-                                                </ul>
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% else %}
-                            <p class="text-sm text-gray-500 dark:text-gray-400 italic">No requirements added yet</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+<div class="min-h-screen p-8 bg-palette-light dark:bg-palette-dark">
+    <div class="max-w-7xl mx-auto">
+        <div class="rounded-lg bg-white dark:bg-palette-navy shadow-xl p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-4xl font-light text-palette-dark dark:text-palette-light">
+                    My Projects
+                </h2>
+                <a href="{% url 'crear_projecto' %}" 
+                   class="px-4 py-2 text-sm font-medium text-white bg-palette-navy dark:bg-palette-rose rounded-md hover:bg-opacity-90 dark:hover:bg-opacity-80 transition focus:ring-2 focus:ring-offset-2 focus:ring-palette-navy dark:focus:ring-palette-rose">
+                    Create New Project
+                </a>
             </div>
-        {% else %}
-            <div class="text-center py-12">
-                <div class="mb-4">
-                    <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                    </svg>
+
+            {% if projects %}
+                <div class="space-y-6">
+                    {% for project in projects %}
+                        <div class="border border-palette-sand dark:border-palette-navy rounded-lg p-6 bg-palette-light dark:bg-palette-dark bg-opacity-50 dark:bg-opacity-30">
+                            <div class="flex justify-between items-start mb-4">
+                                <a href="{% url 'view_project' project.id %}" 
+                                   class="text-2xl font-light text-palette-dark dark:text-palette-light hover:text-palette-navy dark:hover:text-palette-rose transition">
+                                    {{ project.name|default:"Unnamed Project" }}
+                                </a>
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 text-xs font-medium rounded-full bg-palette-sand dark:bg-palette-navy text-palette-dark dark:text-palette-light">
+                                        Created: {{ project.fecha_creacion|date:"d/m/Y" }}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h4 class="text-sm font-medium text-palette-dark dark:text-palette-sand mb-2">Description:</h4>
+                                <p class="text-palette-dark dark:text-palette-light">{{ project.promt|default:"No description provided" }}</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <h4 class="text-sm font-medium text-palette-dark dark:text-palette-sand mb-2">Problems/Limitations:</h4>
+                                <p class="text-palette-dark dark:text-palette-light">{{ project.problem|default:"No problems specified" }}</p>
+                            </div>
+
+                            {% if project.requerimientos_set.all %}
+                                <div class="mt-6">
+                                    <h4 class="text-sm font-medium text-palette-dark dark:text-palette-sand mb-2">Requirements:</h4>
+                                    <ul class="space-y-3">
+                                        {% for req in project.requerimientos_set.all %}
+                                            <li class="pl-4 border-l-2 border-palette-sand dark:border-palette-navy">
+                                                <p class="text-sm text-palette-dark dark:text-palette-light">{{ req.description }}</p>
+                                                
+                                                {% if req.userhistory_set.all %}
+                                                    <ul class="mt-2 space-y-2">
+                                                        {% for history in req.userhistory_set.all %}
+                                                            <li class="ml-4">
+                                                                <p class="text-sm text-palette-dark dark:text-palette-light opacity-90">
+                                                                    {{ history.history }}
+                                                                </p>
+                                                                
+                                                                {% if history.task_set.all %}
+                                                                    <ul class="mt-1 ml-4">
+                                                                        {% for task in history.task_set.all %}
+                                                                            <li class="text-xs text-palette-dark dark:text-palette-light opacity-75">
+                                                                                • {{ task.title }}
+                                                                            </li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                {% endif %}
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <p class="text-sm text-palette-dark dark:text-palette-light opacity-75 italic">
+                                    No requirements added yet
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                 </div>
-                <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-palette-sand">No projects</h3>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Get started by creating a new project</p>
-                <div class="mt-6">
-                    <a href="{% url 'crear_projecto' %}" 
-                       class="inline-flex items-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                        <svg class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
+            {% else %}
+                <div class="text-center py-12">
+                    <div class="mb-4">
+                        <svg class="mx-auto h-12 w-12 text-palette-dark dark:text-palette-light opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
-                        New Project
-                    </a>
+                    </div>
+                    <h3 class="mt-2 text-sm font-medium text-palette-dark dark:text-palette-light">No projects</h3>
+                    <p class="mt-1 text-sm text-palette-dark dark:text-palette-light opacity-75">Get started by creating a new project</p>
+                    <div class="mt-6">
+                        <a href="{% url 'crear_projecto' %}" 
+                           class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-palette-navy dark:bg-palette-rose rounded-md hover:bg-opacity-90 dark:hover:bg-opacity-80 transition focus:ring-2 focus:ring-offset-2 focus:ring-palette-navy dark:focus:ring-palette-rose">
+                            <svg class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/>
+                            </svg>
+                            New Project
+                        </a>
+                    </div>
                 </div>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}
