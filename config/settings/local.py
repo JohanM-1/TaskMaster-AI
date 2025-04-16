@@ -9,6 +9,7 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+CSRF_TRUSTED_ORIGINS = ["https://taskmaster-ai.techcreator.org"]
 SECRET_KEY = env(
     "DJANGO_SECRET_KEY",
     default="NQT2w9oFMF7RRmGccHideVjCeK55TQvZeubdx46Rl8VujjMBeiCwRWeB7b2QsoHT",
